@@ -1,0 +1,31 @@
+{
+  "name": "massive-hipster",
+  "version": "0.0.0",
+  "description": "A website generator on Gulp.",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jordanthomas/massive-hipster"
+  },
+  "author": "Jordan Thomas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jordanthomas/massive-hipster/issues"
+  },
+  "homepage": "https://github.com/jordanthomas/massive-hipster",
+  "devDependencies": {
+    "ecstatic": "^0.5.1",
+    "gulp": "~3.5.5",
+    "gulp-clean": "^0.2.4",
+    "gulp-concat": "~2.1.7",
+    "gulp-imagemin": "~0.2.0",
+    "gulp-jade": "~0.4.2",
+    "gulp-jshint": "^1.5.3",
+    "gulp-sass": "^0.7.1",
+    "gulp-uglify": "~0.2.1",
+    "gulp-watch": "~0.5.2"
+  }
+}
