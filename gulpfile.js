@@ -2,6 +2,7 @@ var ecstatic    = require('ecstatic'),
     http        = require('http'),
     path        = require('path'),
     gulp        = require('gulp'),
+    gutil       = require('gulp-util'),
     concat      = require('gulp-concat'),
     jshint      = require('gulp-jshint'),
     uglify      = require('gulp-uglify'),
@@ -22,7 +23,7 @@ var ecstatic    = require('ecstatic'),
 
 gulp.task('uglify', function() {
   return gulp.src(paths.scripts)
-    .pipe(uglify())
+    .pipe(gutil.env.type === 'production' ? uglify() : gutil.noop())
     .pipe(concat('all.min.js'))
     .pipe(gulp.dest(path.join(paths.build, 'js')));
 });
