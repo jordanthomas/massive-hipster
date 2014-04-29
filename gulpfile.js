@@ -7,7 +7,7 @@ var ecstatic    = require('ecstatic'),
     jshint      = require('gulp-jshint'),
     uglify      = require('gulp-uglify'),
     jade        = require('gulp-jade'),
-    sass        = require('gulp-sass'),
+    sass        = require('gulp-ruby-sass'),
     imagemin    = require('gulp-imagemin'),
     clean       = require('gulp-clean'),
     paths = {
@@ -35,8 +35,13 @@ gulp.task('jslint', function() {
 });
 
 gulp.task('scss', function () {
+  var options = {
+    style: gutil.env.type === 'production' ? 'compressed' : 'expanded'
+  };
+
   return gulp.src(paths.scss_main)
-    .pipe(sass({ errLogToConsole: true }))
+    .pipe(sass(options))
+    .on('error', gutil.noop)
     .pipe(gulp.dest(path.join(paths.build, 'css')));
 });
 
