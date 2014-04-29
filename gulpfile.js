@@ -8,6 +8,7 @@ var ecstatic    = require('ecstatic'),
     uglify      = require('gulp-uglify'),
     jade        = require('gulp-jade'),
     sass        = require('gulp-ruby-sass'),
+    autoprefixer = require('gulp-autoprefixer'),
     imagemin    = require('gulp-imagemin'),
     clean       = require('gulp-clean'),
     paths = {
@@ -17,21 +18,17 @@ var ecstatic    = require('ecstatic'),
       layouts:   ['source/layouts/**/*.jade'],
       scss_main: ['source/css/main.scss'],
       scss:      ['source/css/**/*.scss'],
-      fonts:     ['source/css/fonts/**'],
+      fonts:     ['source/fonts/**'],
       images:    ['source/img/**/*.jpg', 'source/img/**/*.jpeg', 'source/img/**/*.png']
     };
 
-gulp.task('uglify', function() {
-  return gulp.src(paths.scripts)
-    .pipe(gutil.env.type === 'production' ? uglify() : gutil.noop())
-    .pipe(concat('all.min.js'))
-    .pipe(gulp.dest(path.join(paths.build, 'js')));
-});
-
-gulp.task('jslint', function() {
+gulp.task('js', function() {
   return gulp.src(paths.scripts)
     .pipe(jshint())
     .pipe(jshint.reporter('default'))
+    .pipe(gutil.env.type === 'production' ? uglify() : gutil.noop())
+    .pipe(concat('all.min.js'))
+    .pipe(gulp.dest(path.join(paths.build, 'js')));
 });
 
 gulp.task('scss', function () {
@@ -42,18 +39,19 @@ gulp.task('scss', function () {
   return gulp.src(paths.scss_main)
     .pipe(sass(options))
     .on('error', gutil.noop)
+    .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
     .pipe(gulp.dest(path.join(paths.build, 'css')));
 });
 
 gulp.task('fonts', function () {
   return gulp.src(paths.fonts)
-    .pipe(gulp.dest(path.join(paths.build, 'css', 'fonts')));
+    .pipe(gulp.dest(path.join(paths.build, 'fonts')));
 });
 
 gulp.task('images', function () {
   return gulp.src(paths.images)
     .pipe(imagemin())
-    .pipe(gulp.dest(path.join(paths.build, '/img')));
+    .pipe(gulp.dest(path.join(paths.build, 'img')));
 });
 
 gulp.task('html', function() {
@@ -71,7 +69,7 @@ gulp.task('server', function() {
 });
 
 gulp.task('watch', function() {
-  gulp.watch(paths.scripts, ['jslint', 'uglify']);
+  gulp.watch(paths.scripts, ['js']);
   gulp.watch(paths.scss, ['scss']);
   gulp.watch(paths.fonts, ['fonts']);
   gulp.watch(paths.images, ['images']);
@@ -84,6 +82,6 @@ gulp.task('clean', function() {
     .pipe(clean());
 });
 
-gulp.task('build', ['html', 'scss', 'fonts', 'uglify', 'images']);
+gulp.task('build', ['html', 'scss', 'fonts', 'js', 'images']);
 
-gulp.task('default', ['server', 'html', 'scss', 'fonts', 'jslint', 'uglify', 'images', 'watch']);
+gulp.task('default', ['clean', 'server', 'watch', 'html', 'fonts', 'scss', 'js', 'images']);
