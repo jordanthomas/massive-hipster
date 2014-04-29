@@ -1,16 +1,16 @@
-var ecstatic    = require('ecstatic'),
-    http        = require('http'),
-    path        = require('path'),
-    gulp        = require('gulp'),
-    gutil       = require('gulp-util'),
-    concat      = require('gulp-concat'),
-    jshint      = require('gulp-jshint'),
-    uglify      = require('gulp-uglify'),
-    jade        = require('gulp-jade'),
-    sass        = require('gulp-ruby-sass'),
+var ecstatic     = require('ecstatic'),
+    http         = require('http'),
+    path         = require('path'),
+    gulp         = require('gulp'),
+    gutil        = require('gulp-util'),
+    concat       = require('gulp-concat'),
+    jshint       = require('gulp-jshint'),
+    uglify       = require('gulp-uglify'),
+    jade         = require('gulp-jade'),
+    sass         = require('gulp-ruby-sass'),
     autoprefixer = require('gulp-autoprefixer'),
-    imagemin    = require('gulp-imagemin'),
-    clean       = require('gulp-clean'),
+    imagemin     = require('gulp-imagemin'),
+    clean        = require('gulp-clean'),
     paths = {
       build:     'build',
       scripts:   ['source/js/**/*.js', '!source/js/vendor/**/*.js'],
@@ -33,7 +33,7 @@ gulp.task('js', function() {
 
 gulp.task('scss', function () {
   var options = {
-    style: gutil.env.type === 'production' ? 'compressed' : 'expanded'
+    style: gutil.env.type === 'production' ? 'compressed' : 'expanded',
   };
 
   return gulp.src(paths.scss_main)
@@ -82,6 +82,6 @@ gulp.task('clean', function() {
     .pipe(clean());
 });
 
-gulp.task('build', ['html', 'scss', 'fonts', 'js', 'images']);
+gulp.task('build', ['clean', 'html', 'scss', 'fonts', 'js', 'images']);
 
-gulp.task('default', ['clean', 'server', 'watch', 'html', 'fonts', 'scss', 'js', 'images']);
+gulp.task('default', ['clean', 'server', 'watch', 'html', 'scss', 'fonts', 'js', 'images']);
