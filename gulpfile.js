@@ -14,6 +14,7 @@ var ecstatic     = require('ecstatic'),
     paths = {
       build:     'build',
       scripts:   ['source/js/**/*.js', '!source/js/vendor/**/*.js'],
+      vendor_scripts: ['source/js/vendor/**/*.js'],
       pages:     ['source/**/*.jade', '!source/layouts/**'],
       layouts:   ['source/layouts/**/*.jade'],
       scss_main: ['source/css/main.scss'],
@@ -28,6 +29,11 @@ gulp.task('js', function() {
     .pipe(jshint.reporter('default'))
     .pipe(gutil.env.type === 'production' ? uglify() : gutil.noop())
     .pipe(concat('all.min.js'))
+    .pipe(gulp.dest(path.join(paths.build, 'js')));
+});
+
+gulp.task('vendor_js', function() {
+  return gulp.src(paths.vendor_scripts, { base: './source/js' })
     .pipe(gulp.dest(path.join(paths.build, 'js')));
 });
 
