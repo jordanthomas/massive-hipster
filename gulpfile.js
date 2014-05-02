@@ -12,15 +12,35 @@ var ecstatic     = require('ecstatic'),
     http         = require('http'),
     path         = require('path'),
     paths = {
-      build:     'build',
-      scripts:   ['source/js/**/*.js', '!source/js/vendor/**/*.js'],
-      vendor_scripts: ['source/js/vendor/**/*.js'],
-      pages:     ['source/**/*.jade', '!source/layouts/**'],
-      layouts:   ['source/layouts/**/*.jade'],
-      scss_main: ['source/css/main.scss'],
-      scss:      ['source/css/**/*.scss'],
-      fonts:     ['source/fonts/**'],
-      images:    ['source/img/**/*.jpg', 'source/img/**/*.jpeg', 'source/img/**/*.png']
+      build: './build',
+      scripts: [
+        './source/js/**/*.js',
+        '!./source/js/vendor/**/*.js'
+      ],
+      vendor_scripts: [
+        './source/js/vendor/**/*.js'
+      ],
+      pages: [
+        './source/**/*.jade',
+        '!./source/layouts/**'
+      ],
+      layouts: [
+        './source/layouts/**/*.jade'
+      ],
+      scss_main: [
+        './source/css/main.scss'
+      ],
+      scss: [
+        './source/css/**/*.scss'
+      ],
+      fonts: [
+        './source/fonts/**'
+      ],
+      images: [
+        './source/img/**/*.jpg',
+        './source/img/**/*.jpeg',
+        './source/img/**/*.png'
+      ]
     };
 
 gulp.task('js', function() {
