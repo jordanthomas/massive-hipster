@@ -1,7 +1,6 @@
-* {
-  box-sizing: border-box;
-}
-
+// "Element" style definitions here. You could use this file for everything for
+// simpler sites. You may also prefer to organize your files into smaller
+// "module" files as the project grows.
 html {
   color: #222;
   font-size: 1em;
@@ -17,6 +16,28 @@ hr {
   padding: 0;
 }
 
+audio,
+canvas,
+img,
+svg,
+video {
+  vertical-align: middle;
+}
+
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+textarea {
+  resize: vertical;
+}
+
 img {
   max-width: 100%;
+}
+
+.container {
+  @include outer-container;
 }
