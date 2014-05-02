@@ -10,7 +10,7 @@ var ecstatic     = require('ecstatic'),
     sass         = require('gulp-ruby-sass'),
     autoprefixer = require('gulp-autoprefixer'),
     imagemin     = require('gulp-imagemin'),
-    clean        = require('gulp-clean'),
+    rimraf       = require('gulp-rimraf'),
     paths = {
       build:     'build',
       scripts:   ['source/js/**/*.js', '!source/js/vendor/**/*.js'],
@@ -85,9 +85,13 @@ gulp.task('watch', function() {
 
 gulp.task('clean', function() {
   return gulp.src(paths.build, { read: false })
-    .pipe(clean());
+    .pipe(rimraf());
 });
 
-gulp.task('build', ['clean', 'html', 'scss', 'fonts', 'js', 'images']);
+gulp.task('build', ['clean'], function() {
+  gulp.start('html', 'scss', 'fonts', 'vendor_js', 'js', 'images');
+});
 
-gulp.task('default', ['clean', 'server', 'watch', 'html', 'scss', 'fonts', 'js', 'images']);
+gulp.task('default', ['clean'], function() {
+  gulp.start('html', 'scss', 'fonts', 'vendor_js', 'js', 'images', 'server', 'watch');
+});
