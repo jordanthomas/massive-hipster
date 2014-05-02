@@ -1,20 +1,17 @@
-Massive Hipster
-===============
+Starter Kit
+===========
 
 A website generator on Gulp. I use it to create HTML wireframes, prototypes, that sort of thing.
 
-## Why "Massive Hipster"?
-
-That's what Github suggested. I couldn't think of anything better, so, Massive Hipster it was.
-
 ## Get started
 
-0. Install gulp if you haven’t already, `npm install -g gulp`
-1. `git clone git@github.com:jordanthomas/massive-hipster.git [project_name]`
-2. `cd [project_name]`
-3. `npm install`
-4. `gulp`
-5. Enjoy.
+1. Install gulp if you haven’t already, `npm install -g gulp`
+2. `git clone git@github.com:jordanthomas/massive-hipster.git [project_name]`
+3. `cd [project_name]`
+4. `npm install`
+5. `bundle install`
+6. `gulp`
+7. Enjoy.
 
 **Note, at this point you _probably_ want to remove the `origin` remote and add your own so you can save your work to your own repo.**
 
@@ -28,10 +25,9 @@ That's what Github suggested. I couldn't think of anything better, so, Massive H
 
 ## Uses
 
-- Sass (via libass, install it with Homebrew)
+- Sass 3.3 (Ruby)
 - Bourbon
 - Neat
 - Jade
 - Normalize
 - Font Awesome
-
